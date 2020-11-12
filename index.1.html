@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="AWS Serverless Web App tutorial">
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript">
+    <meta name="author" content="Mr. Coxall">
+    <meta name="date" content="Jan 2020">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <title>Student Info</title>
+  </head>
+  
+  <body>
+    <div id="user_info">
+      <p>Please wait ...</p>
+    </div>
+    <div>
+      <button onclick="getUser()">Click me</button>
+    </div>
+    
+    <script type="text/javascript">
+      async function getUser() {
+        // get the user info from API
+  
+        const api_url = 'https://luehiwwku9.execute-api.us-east-1.amazonaws.com/prod/user-profile?email=jane.smith@mths.ca'
+        const api_response = await fetch(api_url);
+        const api_data = await(api_response).json();
+  
+        const div_user_info = document.getElementById('user_info');
+        div_user_info.innerHTML = api_data['body'];
+      }
+    </script>
+          
+  </body>
+  
+</html>
